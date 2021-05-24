@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using WebApplication2.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +17,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 
 using Microsoft.Extensions.Hosting;
 
-using WebApplication2.Data.Repository;
+
 
 namespace WebApplication2
 {
@@ -26,14 +29,12 @@ namespace WebApplication2
             _config = config;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_config["DefaultConnection"]));
 
-            services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IRepository, RepositoryTest>(); // AddScoped AddTransient
 
             services.AddControllersWithViews();
         }

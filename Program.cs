@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication2
 {
-    public class Program
+    public class Repository
     {
         public static void Main(string[] args)
         {
